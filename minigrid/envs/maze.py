@@ -91,6 +91,7 @@ class MazeEnv(MiniGridEnv):
         max_steps: int | None = None,
         **kwargs,
     ):
+        assert size % 2 == 1, "size must be odd"
         self.obstacle_type = obstacle_type
 
         if obstacle_type == Lava:
@@ -118,7 +119,7 @@ class MazeEnv(MiniGridEnv):
         return "find the opening and get to the green goal square"
 
     def _gen_grid(self, width, height):
-        assert width % 2 == 1 and height % 2 == 1  # odd size
+        assert width % 2 == 1 and height % 2 == 1, "needs to have odd size"
 
         # Create an empty grid
         self.grid = Grid(width, height)

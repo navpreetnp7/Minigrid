@@ -313,6 +313,15 @@ def register_minigrid_envs():
         id="MiniGrid-LockedRoom-v0",
         entry_point="minigrid.envs:LockedRoomEnv",
     )
+    
+    # Maze
+    # ----------------------------------------
+    
+    register(
+        id="MiniGrid-MazeS9-v0",
+        entry_point="minigrid.envs:MazeEnv",
+        kwargs={"size": 9},
+    )
 
     # Memory
     # ----------------------------------------
