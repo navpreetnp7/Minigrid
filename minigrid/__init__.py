@@ -6,8 +6,6 @@ from minigrid import minigrid_env, wrappers
 from minigrid.core import roomgrid
 from minigrid.core.world_object import Wall
 
-__version__ = "2.1.0"
-
 
 def register_minigrid_envs():
     # BlockedUnlockPickup
@@ -98,7 +96,7 @@ def register_minigrid_envs():
     register(
         id="MiniGrid-DoorKey-6x6-v0",
         entry_point="minigrid.envs:DoorKeyEnv",
-        kwargs={"size": 5},
+        kwargs={"size": 6},
     )
 
     register(
@@ -314,6 +312,15 @@ def register_minigrid_envs():
     register(
         id="MiniGrid-LockedRoom-v0",
         entry_point="minigrid.envs:LockedRoomEnv",
+    )
+    
+    # Maze
+    # ----------------------------------------
+    
+    register(
+        id="MiniGrid-MazeS9-v0",
+        entry_point="minigrid.envs:MazeEnv",
+        kwargs={"size": 9},
     )
 
     # Memory
@@ -1073,3 +1080,17 @@ def register_minigrid_envs():
         id="BabyAI-BossLevelNoUnlock-v0",
         entry_point="minigrid.envs.babyai:BossLevelNoUnlock",
     )
+
+
+__version__ = "2.1.0"
+
+
+try:
+    import sys
+
+    from farama_notifications import notifications
+
+    if "minigrid" in notifications and __version__ in notifications["minigrid"]:
+        print(notifications["minigrid"][__version__], file=sys.stderr)
+except Exception:  # nosec
+    pass
